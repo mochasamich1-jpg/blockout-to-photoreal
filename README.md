@@ -6,7 +6,8 @@ into something photographic, keeping your exact camera move, timing and motion.
 You do not need to model, texture, light or render well. You need the right
 **shape** and the right **movement**. Everything else comes free.
 
-**[Read the full illustrated guide →](https://mochasamich1-jpg.github.io/blockout-to-photoreal/)**
+**[Read the full illustrated guide →](https://mochasamich.com/guide.html)**
+<sub>(mirror: [GitHub Pages](https://mochasamich1-jpg.github.io/blockout-to-photoreal/))</sub>
 
 ---
 

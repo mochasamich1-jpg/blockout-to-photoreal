@@ -1,21 +1,32 @@
-<title>From Boxes to Photoreal</title>
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>From Boxes to Photoreal &middot; MochaSamich Software</title>
+<meta name="description" content="Build a shot out of coloured blocks in Blender and let an AI repaint it into photoreal footage. Full walkthrough, working scripts and every download link." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="From Boxes to Photoreal" />
+<meta property="og:description" content="Make a photoreal 3D shot without knowing how to model, texture or light anything." />
+<meta property="og:url" content="https://mochasamich.com/guide.html" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://mochasamich.com/guide.html" />
 <style>
   :root {
-    --paper:      #E9EBEE;
-    --paper-2:    #DFE3E7;
-    --ink:        #14181D;
-    --ink-2:      #3C454F;
-    --ink-3:      #68727D;
-    --rule:       #C6CCD3;
-    --accent:     #C4500F;
+    --paper:      #F5F0E8;
+    --paper-2:    #EAE3D8;
+    --ink:        #1A1410;
+    --ink-2:      #4A3D33;
+    --ink-3:      #8A7D70;
+    --rule:       #D8CEC0;
+    --accent:     #A35F0C;
     --accent-ink: #FFFFFF;
-    --steel:      #2B4854;
+    --steel:      #5B4331;
     --amber:      #8A6206;
-    --amber-bg:   #F3EAD2;
-    --teal-bg:    #DDE7EA;
-    --code-bg:    #F5F6F8;
-    --code-ink:   #1D2228;
+    --amber-bg:   #F0E4CC;
+    --teal-bg:    #EDE4D6;
+    --code-bg:    #EFE9DE;
+    --code-ink:   #2A211A;
 
     --display: system-ui, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --body: Georgia, "Iowan Old Style", "Times New Roman", serif;
@@ -24,58 +35,58 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper:      #12161A;
-      --paper-2:    #1A2027;
-      --ink:        #E4E8EC;
-      --ink-2:      #AEB8C2;
-      --ink-3:      #7C8792;
-      --rule:       #2C343C;
-      --accent:     #F0742C;
-      --accent-ink: #12161A;
-      --steel:      #7FB0C0;
-      --amber:      #D6A93F;
-      --amber-bg:   #241E10;
-      --teal-bg:    #14232A;
-      --code-bg:    #0D1115;
-      --code-ink:   #D8DEE4;
+      --paper:      #1A1410;
+      --paper-2:    #221A13;
+      --ink:        #F5F0E8;
+      --ink-2:      #C9BCAE;
+      --ink-3:      #8A7D70;
+      --rule:       #3B2A20;
+      --accent:     #E8A33D;
+      --accent-ink: #1A1410;
+      --steel:      #C9A57A;
+      --amber:      #F5A623;
+      --amber-bg:   #241B10;
+      --teal-bg:    #221A13;
+      --code-bg:    #14100C;
+      --code-ink:   #E0D6C8;
     }
   }
 
   :root[data-theme="dark"] {
-    --paper:      #12161A;
-    --paper-2:    #1A2027;
-    --ink:        #E4E8EC;
-    --ink-2:      #AEB8C2;
-    --ink-3:      #7C8792;
-    --rule:       #2C343C;
-    --accent:     #F0742C;
-    --accent-ink: #12161A;
-    --steel:      #7FB0C0;
-    --amber:      #D6A93F;
-    --amber-bg:   #241E10;
-    --teal-bg:    #14232A;
-    --code-bg:    #0D1115;
-    --code-ink:   #D8DEE4;
+    --paper:      #1A1410;
+    --paper-2:    #221A13;
+    --ink:        #F5F0E8;
+    --ink-2:      #C9BCAE;
+    --ink-3:      #8A7D70;
+    --rule:       #3B2A20;
+    --accent:     #E8A33D;
+    --accent-ink: #1A1410;
+    --steel:      #C9A57A;
+    --amber:      #F5A623;
+    --amber-bg:   #241B10;
+    --teal-bg:    #221A13;
+    --code-bg:    #14100C;
+    --code-ink:   #E0D6C8;
   }
 
   :root[data-theme="light"] {
-    --paper:      #E9EBEE;
-    --paper-2:    #DFE3E7;
-    --ink:        #14181D;
-    --ink-2:      #3C454F;
-    --ink-3:      #68727D;
-    --rule:       #C6CCD3;
-    --accent:     #C4500F;
+    --paper:      #F5F0E8;
+    --paper-2:    #EAE3D8;
+    --ink:        #1A1410;
+    --ink-2:      #4A3D33;
+    --ink-3:      #8A7D70;
+    --rule:       #D8CEC0;
+    --accent:     #A35F0C;
     --accent-ink: #FFFFFF;
-    --steel:      #2B4854;
+    --steel:      #5B4331;
     --amber:      #8A6206;
-    --amber-bg:   #F3EAD2;
-    --teal-bg:    #DDE7EA;
-    --code-bg:    #F5F6F8;
-    --code-ink:   #1D2228;
+    --amber-bg:   #F0E4CC;
+    --teal-bg:    #EDE4D6;
+    --code-bg:    #EFE9DE;
+    --code-ink:   #2A211A;
   }
 
-  * { box-sizing: border-box; }
+* { box-sizing: border-box; }
 
   body {
     margin: 0;
@@ -292,8 +303,39 @@
     color: var(--ink-3);
     font-size: 0.92rem;
   }
-</style>
 
+  /* site chrome: ties the guide back to mochasamich.com */
+  .sitebar {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+  .sitebar .inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--display);
+    font-size: 0.86rem;
+  }
+  .sitebar a { color: var(--ink-2); text-decoration: none; font-weight: 600; }
+  .sitebar a:hover, .sitebar a:focus-visible { color: var(--accent); }
+  .sitebar .sep { color: var(--ink-3); }
+  .sitebar .here { color: var(--ink-3); font-weight: 500; }
+  .sitebar .repo { margin-left: auto; color: var(--accent); font-weight: 650; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<nav class="sitebar">
+  <div class="inner">
+    <a href="https://mochasamich.com/">&lsaquo; MochaSamich Software</a>
+    <span class="sep">/</span>
+    <span class="here">Guide</span>
+    <a class="repo" href="https://github.com/mochasamich1-jpg/blockout-to-photoreal">Get the files on GitHub</a>
+  </div>
+</nav>
 <div class="wrap">
 
   <header class="mast">
@@ -502,3 +544,5 @@ gemma_3_12B_it_fp4_mixed.safetensors       → models/text_encoders</code></pre>
   <p class="close">Built with Blender, ComfyUI, LTX-2.3 and 3DREAL. Every number on this page came from an actual working shot, not a spec sheet.</p>
 
 </div>
+</body>
+</html>
