@@ -28,16 +28,17 @@ lesson here. See [Pick your subject carefully](#pick-your-subject-carefully).
 ## Downloads
 
 GitHub cannot host multi-gigabyte model weights, so these are direct links. Click
-and save each file into the folder shown.
+and save each file into the folder shown. **Total download is about 43 GB**, so
+start it before you do anything else.
 
 ### Models (required)
 
 | File | Goes in | Size | Download |
 |---|---|---|---|
-| `ltx-2.3-22b-dev-fp8.safetensors` | `ComfyUI/models/checkpoints/` | ~29 GB | [Lightricks/LTX-2.3-fp8](https://huggingface.co/Lightricks/LTX-2.3-fp8/resolve/main/ltx-2.3-22b-dev-fp8.safetensors) |
-| `ltx-2.3-22b-distilled-lora-384.safetensors` | `ComfyUI/models/loras/` | ~7.6 GB | [Lightricks/LTX-2.3](https://huggingface.co/Lightricks/LTX-2.3/resolve/main/ltx-2.3-22b-distilled-lora-384.safetensors) |
-| `3DREAL-strong-v2.safetensors` | `ComfyUI/models/loras/` | ~327 MB | [fal/LTX-2.3-3DREAL-LoRA](https://huggingface.co/fal/LTX-2.3-3DREAL-LoRA/resolve/main/3DREAL-strong-v2.safetensors) |
-| `gemma_3_12B_it_fp4_mixed.safetensors` | `ComfyUI/models/text_encoders/` | ~8 GB | [Comfy-Org/ltx-2](https://huggingface.co/Comfy-Org/ltx-2/resolve/main/split_files/text_encoders/gemma_3_12B_it_fp4_mixed.safetensors) |
+| `ltx-2.3-22b-dev-fp8.safetensors` | `ComfyUI/models/checkpoints/` | 27.1 GB | [Lightricks/LTX-2.3-fp8](https://huggingface.co/Lightricks/LTX-2.3-fp8/resolve/main/ltx-2.3-22b-dev-fp8.safetensors) |
+| `gemma_3_12B_it_fp4_mixed.safetensors` | `ComfyUI/models/text_encoders/` | 8.8 GB | [Comfy-Org/ltx-2](https://huggingface.co/Comfy-Org/ltx-2/resolve/main/split_files/text_encoders/gemma_3_12B_it_fp4_mixed.safetensors) |
+| `ltx-2.3-22b-distilled-lora-384.safetensors` | `ComfyUI/models/loras/` | 7.1 GB | [Lightricks/LTX-2.3](https://huggingface.co/Lightricks/LTX-2.3/resolve/main/ltx-2.3-22b-distilled-lora-384.safetensors) |
+| `3DREAL-strong-v2.safetensors` | `ComfyUI/models/loras/` | 320 MB | [fal/LTX-2.3-3DREAL-LoRA](https://huggingface.co/fal/LTX-2.3-3DREAL-LoRA/resolve/main/3DREAL-strong-v2.safetensors) |
 
 What each one does: the checkpoint is the video model. The distilled LoRA makes it
 run in four steps instead of thirty. **3DREAL is the magic one**, trained
