@@ -286,6 +286,50 @@
   .sitebar .sep { color: var(--ink-3); }
   .sitebar .here { color: var(--ink-3); font-weight: 500; }
   .sitebar .repo { margin-left: auto; color: var(--accent); font-weight: 650; }
+
+  /* Repo call to action. The scripts are the first thing anyone actually
+     needs, so this sits at the top of step one instead of being buried in
+     the header bar, where it was the only link and easy to miss. */
+  .cta {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none; color: var(--ink);
+    background: rgba(0, 255, 102, 0.06);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 0.95rem 1.1rem;
+    margin: 0 0 1.15rem;
+    transition: background .16s ease, box-shadow .16s ease;
+  }
+  .cta:hover, .cta:focus-visible {
+    background: rgba(0, 255, 102, 0.12);
+    box-shadow: 0 0 26px rgba(0, 255, 102, 0.20);
+  }
+  .cta-ic {
+    flex: none; width: 38px; height: 38px; border-radius: 2px;
+    display: grid; place-items: center;
+    background: rgba(0, 255, 102, 0.12); border: 1px solid var(--accent);
+    color: var(--accent); font-family: var(--mono); font-size: 0.88rem;
+  }
+  .cta-tx { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+  .cta-tx strong { font-family: var(--mono); font-weight: 500; font-size: 0.95rem; color: var(--accent); }
+  .cta-tx em { font-style: normal; font-size: 0.85rem; color: var(--ink-3); line-height: 1.45; }
+  .cta-go {
+    margin-left: auto; flex: none;
+    font-family: var(--term); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); white-space: nowrap;
+  }
+  @media (max-width: 34rem) {
+    .cta { flex-wrap: wrap; gap: 0.7rem; }
+    .cta-go { margin-left: 0; width: 100%; }
+  }
+
+  /* header link reads as a control, not body text */
+  .sitebar .repo {
+    border: 1px solid var(--rule); border-radius: 2px;
+    padding: 0.28rem 0.6rem;
+  }
+  .sitebar .repo:hover, .sitebar .repo:focus-visible { border-color: var(--accent); }
+
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 </style>
 </head>
@@ -337,14 +381,27 @@
     <div class="step">
       <div class="step-n">1</div>
       <div class="step-body">
-        <h3 style="margin-top:0">Install four free things</h3>
+        <h3 style="margin-top:0">Get the files, then install four free things</h3>
+        <p>Every script in this guide lives in one repo, together with one-click
+        download links for the model files. Start here:</p>
+
+        <a class="cta" href="https://github.com/mochasamich1-jpg/blockout-to-photoreal" target="_blank" rel="noopener">
+          <span class="cta-ic">&lt;/&gt;</span>
+          <span class="cta-tx">
+            <strong>blockout-to-photoreal</strong>
+            <em>Blender scripts, the ComfyUI driver, and every download link. MIT licensed, free.</em>
+          </span>
+          <span class="cta-go">Open on GitHub &rsaquo;</span>
+        </a>
+
+        <p>Then install four free tools:</p>
         <ul>
           <li><strong>Blender.</strong> Any recent version. This is where you build the blockout.</li>
           <li><strong>ComfyUI.</strong> Get the portable Windows build. This runs the AI model.</li>
           <li><strong>ffmpeg.</strong> A command line video tool. It glues still frames into a video and does the final polish.</li>
           <li><strong>Python.</strong> ComfyUI's portable build includes one, but you want a normal Python too for the script that drives everything.</li>
         </ul>
-        <p>Then download four model files and drop them into ComfyUI. Search Hugging Face for these exact filenames:</p>
+        <p>Finally, four model files, about 43&nbsp;GB in total. The repo above has a clickable link for each one, with sizes. Here is what you are getting and where it goes:</p>
         <pre><code>ltx-2.3-22b-dev-fp8.safetensors            → models/checkpoints   (27 GB)
 ltx-2.3-22b-distilled-lora-384.safetensors → models/loras
 3DREAL-strong-v2.safetensors               → models/loras
@@ -503,7 +560,7 @@ gemma_3_12B_it_fp4_mixed.safetensors       → models/text_encoders</code></pre>
     <p>So: cars, motorbikes, boats, planes, trains, animals, storms, and cities are easy mode. Invented machines and creatures are hard mode. Both are possible. Just know which one you have picked before you start, because it changes how many evenings this takes.</p>
   </section>
 
-  <p class="close">Built with Blender, ComfyUI, LTX-2.3 and 3DREAL. Every number on this page came from an actual working shot, not a spec sheet.</p>
+  <p class="close">Built with Blender, ComfyUI, LTX-2.3 and 3DREAL. Every number on this page came from an actual working shot, not a spec sheet. All of it is free at <a href="https://github.com/mochasamich1-jpg/blockout-to-photoreal">github.com/mochasamich1-jpg/blockout-to-photoreal</a>.</p>
 
 </div>
 </body>
