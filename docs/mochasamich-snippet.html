@@ -1,0 +1,84 @@
+<!--
+  Drop-in card for mochasamich.com.
+
+  Palette and type are taken from the live site (#1A1410 ground, #F5A623 amber,
+  #F5F0E8 cream, and the existing --display / --body variables) so it should sit
+  in without restyling. Paste it inside a <section> on the page.
+
+  The href points at the GitHub Pages copy of the guide. If you would rather
+  host the page on your own domain, upload docs/index.html from this repo and
+  change the href to point at it.
+-->
+<a class="ms-guide-card"
+   href="https://mochasamich1-jpg.github.io/blockout-to-photoreal/">
+  <span class="ms-guide-eyebrow">Free guide</span>
+  <span class="ms-guide-title">From boxes to photoreal</span>
+  <span class="ms-guide-body">
+    Make a 15 second photoreal supercar chase without knowing how to model,
+    texture or light anything. Build the shot out of coloured blocks, let an AI
+    repaint every frame. Full walkthrough, working scripts, and every download
+    link in one place.
+  </span>
+  <span class="ms-guide-cta">Read the guide &rsaquo;</span>
+</a>
+
+<style>
+  .ms-guide-card {
+    display: block;
+    max-width: 34rem;
+    padding: 1.6rem 1.7rem;
+    background: #221a13;
+    border: 1px solid #3B2A20;
+    border-left: 3px solid #F5A623;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #F5F0E8;
+    transition: border-color .18s ease, transform .18s ease;
+  }
+  .ms-guide-card:hover,
+  .ms-guide-card:focus-visible {
+    border-color: #F5A623;
+    transform: translateY(-2px);
+  }
+  .ms-guide-card:focus-visible { outline: 2px solid #F5A623; outline-offset: 3px; }
+
+  .ms-guide-eyebrow {
+    display: block;
+    font-family: var(--display, system-ui, sans-serif);
+    font-size: .70rem;
+    font-weight: 650;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #F5A623;
+    margin-bottom: .6rem;
+  }
+  .ms-guide-title {
+    display: block;
+    font-family: var(--display, system-ui, sans-serif);
+    font-size: 1.5rem;
+    font-weight: 750;
+    letter-spacing: -.02em;
+    line-height: 1.12;
+    margin-bottom: .55rem;
+  }
+  .ms-guide-body {
+    display: block;
+    font-family: var(--body, Georgia, serif);
+    font-size: .97rem;
+    line-height: 1.6;
+    color: #C9BCAE;
+    margin-bottom: .9rem;
+  }
+  .ms-guide-cta {
+    display: inline-block;
+    font-family: var(--display, system-ui, sans-serif);
+    font-size: .86rem;
+    font-weight: 650;
+    color: #F5A623;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ms-guide-card { transition: none; }
+    .ms-guide-card:hover { transform: none; }
+  }
+</style>
