@@ -29,10 +29,13 @@
     --rule:       rgba(0, 255, 102, 0.16);
     --accent:     #00FF66;
     --accent-ink: #04070A;
-    --steel:      #22D3EE;
-    --amber:      #FFB000;
-    --amber-bg:   rgba(255, 176, 0, 0.07);
-    --teal-bg:    rgba(34, 211, 238, 0.06);
+    /* Callouts stay on ONE hue. Green page + cyan notes + amber warnings was
+       three accents fighting each other; emphasis is carried by intensity
+       instead, so a warning still outranks a note without a second colour. */
+    --steel:      #4FE38C;                      /* note      - quiet phosphor */
+    --teal-bg:    rgba(0, 255, 102, 0.045);
+    --amber:      #00FF66;                      /* warning   - full phosphor */
+    --amber-bg:   rgba(0, 255, 102, 0.10);
     --code-bg:    #070C11;
     --code-ink:   #C6E9D7;
 
@@ -194,7 +197,7 @@
     color: var(--steel);
     margin-bottom: 0.4rem;
   }
-  .warn { border-left-color: var(--amber); background: var(--amber-bg); }
+  .warn { border-left-width: 4px; border-left-color: var(--amber); background: var(--amber-bg); }
   .warn .tag { color: var(--amber); }
 
   /* ---------- table ---------- */
