@@ -1,0 +1,504 @@
+<title>From Boxes to Photoreal</title>
+
+<style>
+  :root {
+    --paper:      #E9EBEE;
+    --paper-2:    #DFE3E7;
+    --ink:        #14181D;
+    --ink-2:      #3C454F;
+    --ink-3:      #68727D;
+    --rule:       #C6CCD3;
+    --accent:     #C4500F;
+    --accent-ink: #FFFFFF;
+    --steel:      #2B4854;
+    --amber:      #8A6206;
+    --amber-bg:   #F3EAD2;
+    --teal-bg:    #DDE7EA;
+    --code-bg:    #F5F6F8;
+    --code-ink:   #1D2228;
+
+    --display: system-ui, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --mono: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:      #12161A;
+      --paper-2:    #1A2027;
+      --ink:        #E4E8EC;
+      --ink-2:      #AEB8C2;
+      --ink-3:      #7C8792;
+      --rule:       #2C343C;
+      --accent:     #F0742C;
+      --accent-ink: #12161A;
+      --steel:      #7FB0C0;
+      --amber:      #D6A93F;
+      --amber-bg:   #241E10;
+      --teal-bg:    #14232A;
+      --code-bg:    #0D1115;
+      --code-ink:   #D8DEE4;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #12161A;
+    --paper-2:    #1A2027;
+    --ink:        #E4E8EC;
+    --ink-2:      #AEB8C2;
+    --ink-3:      #7C8792;
+    --rule:       #2C343C;
+    --accent:     #F0742C;
+    --accent-ink: #12161A;
+    --steel:      #7FB0C0;
+    --amber:      #D6A93F;
+    --amber-bg:   #241E10;
+    --teal-bg:    #14232A;
+    --code-bg:    #0D1115;
+    --code-ink:   #D8DEE4;
+  }
+
+  :root[data-theme="light"] {
+    --paper:      #E9EBEE;
+    --paper-2:    #DFE3E7;
+    --ink:        #14181D;
+    --ink-2:      #3C454F;
+    --ink-3:      #68727D;
+    --rule:       #C6CCD3;
+    --accent:     #C4500F;
+    --accent-ink: #FFFFFF;
+    --steel:      #2B4854;
+    --amber:      #8A6206;
+    --amber-bg:   #F3EAD2;
+    --teal-bg:    #DDE7EA;
+    --code-bg:    #F5F6F8;
+    --code-ink:   #1D2228;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+  }
+
+  /* ---------- masthead ---------- */
+  .mast {
+    padding: 5rem 0 2.5rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .eyebrow {
+    font-family: var(--display);
+    font-size: 0.74rem;
+    font-weight: 650;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+  }
+  .mast h1 {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 7vw, 3.9rem);
+    font-weight: 780;
+    letter-spacing: -0.032em;
+    line-height: 1.02;
+    text-wrap: balance;
+    margin: 0 0 1.1rem;
+  }
+  .standfirst {
+    font-size: 1.16rem;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 34rem;
+  }
+
+  /* ---------- generic type ---------- */
+  h2 {
+    font-family: var(--display);
+    font-size: 1.62rem;
+    font-weight: 720;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0 0 0.9rem;
+  }
+  h3 {
+    font-family: var(--display);
+    font-size: 1.06rem;
+    font-weight: 680;
+    letter-spacing: -0.008em;
+    margin: 2rem 0 0.55rem;
+  }
+  p { margin: 0 0 1.05rem; }
+  a { color: var(--accent); }
+  strong { font-weight: 700; }
+
+  ul, ol { margin: 0 0 1.05rem; padding-left: 1.3rem; }
+  li { margin-bottom: 0.5rem; }
+  li::marker { color: var(--ink-3); }
+
+  .lede {
+    font-size: 1.06rem;
+    color: var(--ink-2);
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 3.2rem 0 0; }
+
+  /* numbered build steps: the order is real, you cannot run 4 before 3 */
+  .step {
+    display: grid;
+    grid-template-columns: 3.4rem 1fr;
+    gap: 0 1.3rem;
+    padding-top: 3.4rem;
+  }
+  .step + .step { border-top: 1px solid var(--rule); margin-top: 3.2rem; padding-top: 3.2rem; }
+  .step-n {
+    font-family: var(--display);
+    font-size: 2.5rem;
+    font-weight: 780;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.12rem;
+  }
+  .step-body { min-width: 0; }
+  .step-body > :last-child { margin-bottom: 0; }
+
+  @media (max-width: 34rem) {
+    .step { grid-template-columns: 1fr; gap: 0; }
+    .step-n { font-size: 1.9rem; margin-bottom: 0.5rem; }
+  }
+
+  /* ---------- code ---------- */
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.95rem 1.1rem;
+    overflow-x: auto;
+    margin: 0 0 1.05rem;
+  }
+  pre code {
+    font-family: var(--mono);
+    font-size: 0.83rem;
+    line-height: 1.6;
+    white-space: pre;
+  }
+  :not(pre) > code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.07em 0.34em;
+  }
+
+  /* ---------- callouts ---------- */
+  .note {
+    border-left: 3px solid var(--steel);
+    background: var(--teal-bg);
+    padding: 1rem 1.2rem;
+    margin: 0 0 1.05rem;
+    border-radius: 0 3px 3px 0;
+  }
+  .note > :last-child { margin-bottom: 0; }
+  .note .tag {
+    display: block;
+    font-family: var(--display);
+    font-size: 0.7rem;
+    font-weight: 680;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 0.4rem;
+  }
+  .warn { border-left-color: var(--amber); background: var(--amber-bg); }
+  .warn .tag { color: var(--amber); }
+
+  /* ---------- table ---------- */
+  .tablewrap { overflow-x: auto; margin: 0 0 1.05rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--display);
+    font-size: 0.92rem;
+    min-width: 30rem;
+  }
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.72rem 0.9rem 0.72rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  th {
+    font-weight: 680;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom-color: var(--ink-2);
+  }
+  td:first-child { font-weight: 600; width: 40%; }
+
+  /* ---------- rules panel ---------- */
+  .rules { display: grid; gap: 0; margin: 1.4rem 0 1.05rem; }
+  .rule-row {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: 0.9rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .rule-row:last-child { border-bottom: 1px solid var(--rule); }
+  .rule-row .k {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.22rem;
+  }
+  .rule-row p { margin: 0; font-size: 0.97rem; }
+  .rule-row strong { font-family: var(--display); font-size: 0.95rem; }
+
+  .kicker {
+    font-family: var(--display);
+    font-size: 0.74rem;
+    font-weight: 650;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 0.7rem;
+  }
+
+  .close {
+    margin-top: 4rem;
+    padding: 2rem 0 0;
+    border-top: 2px solid var(--ink);
+    color: var(--ink-3);
+    font-size: 0.92rem;
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">Blender + LTX-2.3 video guide</p>
+    <h1>From boxes to photoreal</h1>
+    <p class="standfirst">How to make a 15 second supercar chase without knowing how to model, texture, or light anything. You build the shot out of coloured blocks. An AI paints the rest.</p>
+  </header>
+
+  <section>
+    <h2>The trick, in one paragraph</h2>
+    <p class="lede">Making photoreal 3D the normal way is brutally hard. You have to model, unwrap, texture, light, and render, and any one of those going wrong ruins the shot. This method skips all of it. You build a crude stand-in out of plain coloured boxes, the kind of thing that takes an afternoon and looks like a toy. Then you feed that footage to a video AI that repaints every frame into something photographic while keeping your exact camera move, timing, and motion.</p>
+    <p>Your job becomes the two things a computer cannot guess: the <strong>shape</strong> of the thing and <strong>how it moves</strong>. Paint, reflections, wet asphalt, dust, weather, and grain all come free.</p>
+    <div class="note">
+      <span class="tag">What you are actually making</span>
+      <p>Stage one is a Blender file that renders 361 flat-shaded frames. Stage two turns those frames into a video, runs it through an AI model, and hands back the finished clip. Stage two takes about two minutes.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Before you start: can your computer do this?</h2>
+    <p>This is the honest gate, and it is worth checking before you spend an evening on the rest. The AI model is a 27 GB file that has to fit on your graphics card.</p>
+    <ul>
+      <li><strong>Comfortable:</strong> an NVIDIA card with 32 GB of video memory (RTX 5090).</li>
+      <li><strong>Workable:</strong> 24 GB (RTX 3090, 4090). Use shorter clips, around 121 frames instead of 361.</li>
+      <li><strong>Not going to work:</strong> under 16 GB, or any AMD or Intel card, or a laptop chip.</li>
+    </ul>
+    <div class="note warn">
+      <span class="tag">If your card is too small</span>
+      <p>Do not give up on the idea. <strong>Stage one is the valuable half and it runs on any computer.</strong> Build the blockout in Blender, export the video, then run it through a hosted image-to-video or video-to-video service instead of doing the AI pass locally. You lose the fine control described below, but the core trick still works.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="kicker">The build</p>
+    <h2>Six steps</h2>
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Install four free things</h3>
+        <ul>
+          <li><strong>Blender.</strong> Any recent version. This is where you build the blockout.</li>
+          <li><strong>ComfyUI.</strong> Get the portable Windows build. This runs the AI model.</li>
+          <li><strong>ffmpeg.</strong> A command line video tool. It glues still frames into a video and does the final polish.</li>
+          <li><strong>Python.</strong> ComfyUI's portable build includes one, but you want a normal Python too for the script that drives everything.</li>
+        </ul>
+        <p>Then download four model files and drop them into ComfyUI. Search Hugging Face for these exact filenames:</p>
+        <pre><code>ltx-2.3-22b-dev-fp8.safetensors            → models/checkpoints   (27 GB)
+ltx-2.3-22b-distilled-lora-384.safetensors → models/loras
+3DREAL-strong-v2.safetensors               → models/loras
+gemma_3_12B_it_fp4_mixed.safetensors       → models/text_encoders</code></pre>
+        <p>The big one is the base video model. The two LoRA files are small add-ons: one makes it run in four steps instead of thirty, the other is specifically trained to turn 3D renders into photographs. The Gemma file reads your text prompt.</p>
+        <div class="note warn">
+          <span class="tag">Download gotcha</span>
+          <p>Hugging Face's storage rejects multi-connection downloaders. If a download manager keeps failing at 403, pull the file with a plain single-stream <code>curl</code> instead.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Build the blockout in Blender</h3>
+        <p>This is the part that decides whether the whole thing works, so it is worth understanding the rules before you build anything. They are counterintuitive and every one of them was learned by getting it wrong.</p>
+
+        <div class="rules">
+          <div class="rule-row">
+            <div class="k">01</div>
+            <p><strong>Silhouette beats detail.</strong> The outline is what the AI reads. Get the proportions right and skip the small stuff. On the car, the thing that mattered was huge wheels against a very low body, not door handles.</p>
+          </div>
+          <div class="rule-row">
+            <div class="k">02</div>
+            <p><strong>Give every part a different, saturated colour.</strong> This is not optional. A grey blockout barely transforms at all. Bright orange body, near black tyres, silver wheels, dark blue glass. The colour separation is how the AI works out which part is which.</p>
+          </div>
+          <div class="rule-row">
+            <div class="k">03</div>
+            <p><strong>Keep the lighting mid-tone and flat.</strong> Use Blender's Workbench engine, not Cycles or Eevee. Overcast daylight. Night scenes collapse into mush.</p>
+          </div>
+          <div class="rule-row">
+            <div class="k">04</div>
+            <p><strong>Do not model smoke, fire, or dust.</strong> The AI invents these far better than you can, and a modelled smoke cloud comes back as a solid grey slab. Leave them out entirely.</p>
+          </div>
+          <div class="rule-row">
+            <div class="k">05</div>
+            <p><strong>Never let the subject touch the edge of frame.</strong> The moment part of your subject is cropped, the AI invents a replacement for the missing bit, and it invents something wrong.</p>
+          </div>
+        </div>
+
+        <p>Then there is motion, which matters as much as shape. A car that slides around like a sticker on glass will come back looking like a sticker on glass. The fix is to make the body move on top of the wheels rather than moving the whole car as one lump: the wheels stay planted on the road, and the body rolls into corners, dives forward under braking, and squats back under acceleration.</p>
+        <p>Once it is built, render it from the command line rather than clicking around in Blender. It is faster and repeatable:</p>
+        <pre><code>blender -b -P build_race.py -- ./frames_race</code></pre>
+        <p>That writes 361 numbered PNG files at 704 x 1280. Vertical, because that is what phones want.</p>
+        <div class="note">
+          <span class="tag">Why 361</span>
+          <p>The AI model needs a frame count of eight times something, plus one. 361 works out at 15.04 seconds at 24 frames per second. 121 and 241 also work, and are much kinder on a smaller graphics card.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Look at it, then fix it, then look again</h3>
+        <p>This is a step, not an afterthought. Render a handful of frames, actually open them, and be harsh. Almost every problem in the finished video traces back to something visible in the blockout that got waved through.</p>
+        <p>Two checks worth doing every single time:</p>
+        <ul>
+          <li><strong>Render your subject on its own from six angles first</strong>, before you build any scenery. If it does not read as the right object in a clean render, it never will in the final video.</li>
+          <li><strong>Verify nothing gets cropped.</strong> The reliable way is to have the script check the corners of the subject against the camera on every shot, and print a warning. Eyeballing a few stills misses it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Turn the frames into a video</h3>
+        <p>One command. The high quality setting matters here, because this file is the AI's only input.</p>
+        <pre><code>ffmpeg -y -framerate 24 -i frames_race/bl_%04d.png \
+  -c:v libx264 -crf 12 -pix_fmt yuv420p blockout.mp4</code></pre>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">5</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Run the AI pass</h3>
+        <p>Start ComfyUI and build a chain that does this, in order:</p>
+        <ol>
+          <li>Load the LTX checkpoint, then stack the two LoRAs on it. Distilled at strength <strong>0.5</strong>, 3DREAL at <strong>1.0</strong>.</li>
+          <li>Load your <code>blockout.mp4</code> and encode it into the model's latent space. This is the key move: your video becomes the <em>starting point</em>, not just a reference.</li>
+          <li>Add a silent audio track. LTX-2.3 is an audio and video model, so it needs both halves present even when you do not want sound.</li>
+          <li>Sample with <code>euler_ancestral_cfg_pp</code>, guidance <strong>1.0</strong>, and a manual sigma schedule (see below).</li>
+          <li>Decode and save.</li>
+        </ol>
+        <p>Now the prompt. Two rules make the difference between a good result and a mess:</p>
+        <p><strong>Describe materials and light, not the object.</strong> The AI already knows what a supercar is. What it needs from you is the look: glossy paint with building reflections sliding across it, carbon fibre splitter, hot brake discs, wet asphalt, overcast light, shot on film.</p>
+        <p><strong>In the negative prompt, name the wrong thing it might become.</strong> This is the single most useful trick in the whole process. If your model keeps coming back as a toy, put "toy car, diecast model, plastic toy" in the negative. It works, and it works immediately.</p>
+        <p>On a 5090 the pass takes about two minutes for the full 361 frames.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">6</div>
+      <div class="step-body">
+        <h3 style="margin-top:0">Finish it</h3>
+        <p>The output comes back at the size you fed in. Scale it up for delivery and add a touch of sharpening:</p>
+        <pre><code>ffmpeg -y -i out.mp4 -vf "scale=1080:1920:flags=lanczos,unsharp=5:5:0.30:5:5:0.0" \
+  -c:v libx264 -crf 16 -preset slow -pix_fmt yuv420p final.mp4</code></pre>
+        <p>Also worth building: a side by side of the blockout and the final. It is the most convincing thing you can show anyone, and it is one more ffmpeg command.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The one dial that matters</h2>
+    <p>Everything above is fixed setup. There is really only one number you tune, and it is called <strong>sigma</strong>. Think of it as how much freedom the AI gets.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Sigma</th><th>What happens</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Too low (0.90)</td><td>Keeps your shapes perfectly, but the world stays flat and CG. Dry matte road, cardboard buildings.</td></tr>
+          <tr><td>Right (0.96)</td><td>Wet reflective asphalt, weathered concrete, real paint, and your motion intact.</td></tr>
+          <tr><td>Too high (0.98)</td><td>Gorgeous, and it quietly rewrites your scene. On this shot it deleted the drift and pointed the car straight down the road.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>You feed it as a short descending list. The car used:</p>
+    <pre><code>0.962, 0.885, 0.695, 0.40, 0.0</code></pre>
+    <p>Only the first number really matters. The rest just step down to zero.</p>
+    <div class="note warn">
+      <span class="tag">Test on your hardest frame</span>
+      <p>Tune sigma against the most unusual moment in your shot, not a pretty straight-line one. The higher setting made every normal frame look better and had silently thrown away the drift, which was the whole point of the video.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>When it goes wrong</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>What you see</th><th>What to do</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Looks like a video game</td><td>Raise sigma.</td></tr>
+          <tr><td>Your subject turned into something else</td><td>Lower sigma. Name the wrong thing in the negative prompt. Check nothing is cropped.</td></tr>
+          <tr><td>A special pose vanished</td><td>Sigma is too high. Come down in small steps.</td></tr>
+          <tr><td>Everything is grey mush</td><td>Your blockout is too grey. Go back and give parts strong separate colours.</td></tr>
+          <tr><td>Proportions look wrong</td><td>Fix it in Blender. No prompt will fix a bad silhouette.</td></tr>
+          <tr><td>Legs or wheels look spindly</td><td>Build them chunkier. The AI preserves mass literally, so thin stays thin.</td></tr>
+          <tr><td>Modelled smoke is a grey slab</td><td>Delete it and describe it in the prompt instead.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The rule that decides everything</h2>
+    <p class="lede">Pick a subject the AI has seen a million photographs of.</p>
+    <p>This matters more than any setting on this page. The same setup, on the same computer, on the same day, produced a photoreal supercar on the very first attempt and needed six rounds to get a walking mech to half work.</p>
+    <p>The reason is simple. There is an enormous amount of real footage of cars, streets, buildings, weather, and animals. There is no real footage of a giant walking war machine, so when the AI is unsure it substitutes the nearest real thing it knows and you get a crane, or a tracked vehicle, or a wooden crate where the missile pods should be.</p>
+    <p>So: cars, motorbikes, boats, planes, trains, animals, storms, and cities are easy mode. Invented machines and creatures are hard mode. Both are possible. Just know which one you have picked before you start, because it changes how many evenings this takes.</p>
+  </section>
+
+  <p class="close">Built with Blender, ComfyUI, LTX-2.3 and 3DREAL. Every number on this page came from an actual working shot, not a spec sheet.</p>
+
+</div>

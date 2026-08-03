@@ -1,0 +1,9 @@
+frames/
+probe/
+probe_scene/
+chk/
+*.mp4
+*.png
+__pycache__/
+*.blend
+*.blend1
