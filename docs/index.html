@@ -11,79 +11,35 @@
 <meta property="og:url" content="https://mochasamich.com/guide.html" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://mochasamich.com/guide.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<meta name="theme-color" content="#04070A" />
 <style>
+  /* Single dark theme, committed. The site is dark-only now, and a Matrix
+     palette that flips to parchment in light mode would be incoherent.
+     No scanlines or digital rain on this page: atmosphere belongs on the
+     landing page, readability belongs on a 2,500 word guide. */
   :root {
-    --paper:      #F5F0E8;
-    --paper-2:    #EAE3D8;
-    --ink:        #1A1410;
-    --ink-2:      #4A3D33;
-    --ink-3:      #8A7D70;
-    --rule:       #D8CEC0;
-    --accent:     #A35F0C;
-    --accent-ink: #FFFFFF;
-    --steel:      #5B4331;
-    --amber:      #8A6206;
-    --amber-bg:   #F0E4CC;
-    --teal-bg:    #EDE4D6;
-    --code-bg:    #EFE9DE;
-    --code-ink:   #2A211A;
+    --paper:      #04070A;
+    --paper-2:    #080E12;
+    --ink:        #D8F5E6;
+    --ink-2:      #A6C9B7;
+    --ink-3:      #6B8F7E;
+    --rule:       rgba(0, 255, 102, 0.16);
+    --accent:     #00FF66;
+    --accent-ink: #04070A;
+    --steel:      #22D3EE;
+    --amber:      #FFB000;
+    --amber-bg:   rgba(255, 176, 0, 0.07);
+    --teal-bg:    rgba(34, 211, 238, 0.06);
+    --code-bg:    #070C11;
+    --code-ink:   #C6E9D7;
 
-    --display: system-ui, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --body: Georgia, "Iowan Old Style", "Times New Roman", serif;
-    --mono: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper:      #1A1410;
-      --paper-2:    #221A13;
-      --ink:        #F5F0E8;
-      --ink-2:      #C9BCAE;
-      --ink-3:      #8A7D70;
-      --rule:       #3B2A20;
-      --accent:     #E8A33D;
-      --accent-ink: #1A1410;
-      --steel:      #C9A57A;
-      --amber:      #F5A623;
-      --amber-bg:   #241B10;
-      --teal-bg:    #221A13;
-      --code-bg:    #14100C;
-      --code-ink:   #E0D6C8;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --paper:      #1A1410;
-    --paper-2:    #221A13;
-    --ink:        #F5F0E8;
-    --ink-2:      #C9BCAE;
-    --ink-3:      #8A7D70;
-    --rule:       #3B2A20;
-    --accent:     #E8A33D;
-    --accent-ink: #1A1410;
-    --steel:      #C9A57A;
-    --amber:      #F5A623;
-    --amber-bg:   #241B10;
-    --teal-bg:    #221A13;
-    --code-bg:    #14100C;
-    --code-ink:   #E0D6C8;
-  }
-
-  :root[data-theme="light"] {
-    --paper:      #F5F0E8;
-    --paper-2:    #EAE3D8;
-    --ink:        #1A1410;
-    --ink-2:      #4A3D33;
-    --ink-3:      #8A7D70;
-    --rule:       #D8CEC0;
-    --accent:     #A35F0C;
-    --accent-ink: #FFFFFF;
-    --steel:      #5B4331;
-    --amber:      #8A6206;
-    --amber-bg:   #F0E4CC;
-    --teal-bg:    #EDE4D6;
-    --code-bg:    #EFE9DE;
-    --code-ink:   #2A211A;
+    --display: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
+    --body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Consolas, Menlo, monospace;
+    --term: "Share Tech Mono", ui-monospace, Menlo, monospace;
   }
 
 * { box-sizing: border-box; }
@@ -120,6 +76,7 @@
   }
   .mast h1 {
     font-family: var(--display);
+    text-shadow: 0 0 26px rgba(0,255,102,0.20);
     font-size: clamp(2.4rem, 7vw, 3.9rem);
     font-weight: 780;
     letter-spacing: -0.032em;
@@ -311,15 +268,17 @@
   }
   .sitebar .inner {
     max-width: 46rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
     margin: 0 auto;
     padding: 0.85rem 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.6rem;
     font-family: var(--display);
-    font-size: 0.86rem;
+    font-size: 0.72rem;
   }
-  .sitebar a { color: var(--ink-2); text-decoration: none; font-weight: 600; }
+  .sitebar a { color: var(--ink-3); text-decoration: none; font-weight: 600; }
   .sitebar a:hover, .sitebar a:focus-visible { color: var(--accent); }
   .sitebar .sep { color: var(--ink-3); }
   .sitebar .here { color: var(--ink-3); font-weight: 500; }
